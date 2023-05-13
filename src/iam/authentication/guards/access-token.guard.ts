@@ -28,13 +28,12 @@ export class AccessTokenGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     try {
+      // encode jwt
       const payload = await this.jwtService.verifyAsync(
         token,
         this.jwtConfiguration,
       );
       request[REQUEST_USER_KEY] = payload;
-      // for tests to see what we decoded from JWT
-      console.log(payload);
     } catch {
       throw new UnauthorizedException();
     }
