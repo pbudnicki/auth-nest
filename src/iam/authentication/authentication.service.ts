@@ -71,7 +71,7 @@ export class AuthenticationService {
       this.signToken<Partial<ActiveUserData>>(
         user.id,
         this.jwtConfiguration.accessTokenTtl,
-        { email: user.email, role: user.role },
+        { email: user.email, role: user.role, permissions: user.permissions },
       ),
       // ideally, we should add an interface here describing the RefreshToken payload structure.
       this.signToken(user.id, this.jwtConfiguration.refreshTokenTtl, {
